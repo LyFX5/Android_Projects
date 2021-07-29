@@ -1,0 +1,29 @@
+public static void save(ArrayList<Element> elements, File file, Context context){
+        try {
+            ObjectOutputStream obos = new ObjectOutputStream(context.openFileOutput(file.getName(),Context.MODE_PRIVATE));
+            obos.writeObject(elements);
+            obos.close();
+        }catch (IOException io){
+            Log.e("Exception", "File write failed: " + io.toString());
+        }
+    }
+
+    public static ArrayList<Element> remember(File file, Context context){
+        ArrayList<Element> elements = new ArrayList<>();
+        try{
+            InputStream inputStream = context.openFileInput(file.getName());
+            if (inputStream != null){
+                ObjectInputStream obis = new ObjectInputStream(inputStream);
+                elements = (ArrayList<Element>) obis.readObject();
+                obis.close();
+            }else {
+                MainActivity.toaster(context,"inputStream == null");
+            }
+
+        }catch (IOException io){
+            Log.e("Exception", "Can not read file: " + io.toString());
+        }catch (ClassNotFoundException cnfe){
+            Log.e("Exception", "Class not found: " + cnfe.toString());
+        }
+        return elements;
+    }

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">LinAl</string>
+    <string name="det">Определитель</string>
+    <string name="invers">Обратная Матрица</string>
+    <string name="save">Сохранить</string>
+    <string name="share">Поделиться</string>
+    <string name="toast_save">Матрица сохранена</string>
+</resources>
